@@ -4,7 +4,7 @@
 GenAIEmailProcessingApp is a Flask-based web application that processes email files and extracts summaries using a machine learning model.
 
 ## Features
-- Upload email files in `.eml` format.
+- Upload email files in `.eml` or `.txt` or `.pdf` or `.docx` format.
 - Extract and summarize the content of the email.
 - Receive additional parameters for processing.
 
