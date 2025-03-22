@@ -31,7 +31,9 @@ GenAIEmailProcessingApp is a Flask-based web application that processes email fi
 ## Usage
 1. Start the Flask application:
     ```bash
-    python App.py
+    
+    .venv\Scripts\activate
+    flask run
     ```
 2. Open your web browser and go to `http://127.0.0.1:5000/`.
 
