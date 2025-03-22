@@ -10,6 +10,7 @@
 - [How to Run](#how-to-run)
 - [Tech Stack](#tech-stack)
 - [Team](#team)
+- [Future Work](#future-work)  <!-- Added new section -->
 
 ---
 
@@ -58,3 +59,6 @@ Describe the major technical or non-technical challenges your team encountered.
 ## 👥 Team
 - **Your Name** - [GitHub](#) | [LinkedIn](#)
 - **Teammate 2** - [GitHub](#) | [LinkedIn](#)
+
+## 🔮 Future Work
+Outline the potential improvements and future directions for the project.
