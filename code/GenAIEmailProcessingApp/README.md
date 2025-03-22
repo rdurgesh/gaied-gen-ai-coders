@@ -22,6 +22,7 @@ GenAIEmailProcessingApp is a Flask-based web application that processes email fi
 2. Navigate to the project directory:
     ```bash
     cd GenAIEmailProcessingApp
+    py -3 -m venv .venv
     ```
 3. Install the required dependencies:
     ```bash
@@ -31,7 +32,7 @@ GenAIEmailProcessingApp is a Flask-based web application that processes email fi
 ## Usage
 1. Start the Flask application:
     ```bash
-    
+
     .venv\Scripts\activate
     flask run
     ```
