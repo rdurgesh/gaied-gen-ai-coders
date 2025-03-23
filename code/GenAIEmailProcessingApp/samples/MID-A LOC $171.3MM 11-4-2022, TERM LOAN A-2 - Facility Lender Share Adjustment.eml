@@ -1,0 +1,202 @@
+Received: from TYSPR04MB8073.apcprd04.prod.outlook.com (::1) by
+ TYZPR04MB8148.apcprd04.prod.outlook.com with HTTPS; Sun, 23 Mar 2025 08:39:41
+ +0000
+Received: from SA0PR11CA0007.namprd11.prod.outlook.com (2603:10b6:806:d3::12)
+ by TYSPR04MB8073.apcprd04.prod.outlook.com (2603:1096:405:87::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.34; Sun, 23 Mar
+ 2025 08:39:40 +0000
+Received: from SN1PEPF00026368.namprd02.prod.outlook.com
+ (2603:10b6:806:d3:cafe::9a) by SA0PR11CA0007.outlook.office365.com
+ (2603:10b6:806:d3::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.42 via Frontend Transport; Sun,
+ 23 Mar 2025 08:39:39 +0000
+Authentication-Results: spf=pass (sender IP is 209.85.208.178)
+ smtp.mailfrom=gmail.com; dkim=pass (signature was verified)
+ header.d=gmail.com;dmarc=pass action=none header.from=gmail.com;compauth=pass
+ reason=100
+Received-SPF: Pass (protection.outlook.com: domain of gmail.com designates
+ 209.85.208.178 as permitted sender) receiver=protection.outlook.com;
+ client-ip=209.85.208.178; helo=mail-lj1-f178.google.com; pr=C
+Received: from mail-lj1-f178.google.com (209.85.208.178) by
+ SN1PEPF00026368.mail.protection.outlook.com (10.167.241.133) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.20
+ via Frontend Transport; Sun, 23 Mar 2025 08:39:38 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:E682F8DD8872CE763D6EABA7B63BAA89201EE0F21EC93BB12B502D75CDF56860;UpperCasedChecksum:EC63EBB5AD13AFC93A3406BA62F4865CA8B32A13DFA72AF2EFE3C5232E0C3EFB;SizeAsReceived:2744;Count:15
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-30c0517142bso36120511fa.1
+        for <kcsivarajan@outlook.com>; Sun, 23 Mar 2025 01:39:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742719177; x=1743323977; darn=outlook.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=jCfshmclIoUTk6gs718Xqz4BCunZzkao1b6LTWY+9oY=;
+        b=inRhGcpPaBpcUZzskdPu7PBeJCnc7m04bsf4ESrVoWM/nNBorBZrujgCqGNTiOqNtl
+         70PH46Gh8AErCIVqJAMYSbZw44jtsCJf0Xn6AKsFSyNhvV5MB9m+24cuZWoQ/XdTsCK5
+         LhW+j/zZyw9Exouixyfpjzyf4QJe8/yqwcunkQcRMeVA3i85W27bsi+AsKeAaIJ/4r5T
+         GcGSmVMyOvkNrLf0+7D4KM1G0ko4oZ2NhYeLZH8o5AErhxcBtLTFsuM8Z2qyWHIK3PuE
+         FE556PrabGxH8B66e9V8+plaIMZQ37NOqJHdWFKtbReIXTe/naRIk35vESPT5B7ZZtKs
+         sPSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742719177; x=1743323977;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jCfshmclIoUTk6gs718Xqz4BCunZzkao1b6LTWY+9oY=;
+        b=ncO2nx3PbCmke0c7AtdjkiLF0dboeFesLHCZha11IT4c+g/KLrtS+6hucOWn0xhSik
+         g20oue+Yg6mpFAvzTZvc6Kl0XpXoRPV0T5qg/oohUnr787MikgS+zleEho3iUPBgUR7K
+         8DLdp64fdmd3XbXvyvOVI7A+kWfcwix2k0ilaGiab31o9hyCz4ReXVr4A5z0u4ZOh7iZ
+         b2y5CILxEq2ztOn+2eyYTAjB7M5DVZ8Dz6e9soD446lHlKyyWfq4nEOcCJlN9xDfhutT
+         TNx66tPkiUx5L3Z6oLmYayMx5SPTr9ZXtUm8g1EJmFfnXTKhxq5za4w5GDD3MfjUl3QD
+         d3yQ==
+X-Gm-Message-State: AOJu0YxHeQaGBYfqVsuoG19g05CLKu97nf2kmTcomKOsg2eXEBbAHN4J
+	lP8bX9lfD/A3FoPVoawbIz7ntEHMmfQDhrKRCvSum2AtRKstQQfWmszPutLz9cIlwoyMBgWcp2A
+	Gl7mq8qA01SprgkYSVIH7f+b6uYD6R4wtxWQ=
+X-Gm-Gg: ASbGncu0A7zlq+x/VEBvy1ZbBKnM+738UUexzCCNsH/mmiYl9S7Qf2nnDFwdGz6ut73
+	VfqFPGQH/E0sI2MIYT2ymQjWzAdSLxBV4GXaVqP9UlSJ3nCWeroW8SLUc7CQxOVEYQPiQTom3Fe
+	W5zZuobYoHznY8XHn7k5iub1sy3A==
+X-Google-Smtp-Source: AGHT+IH2ghdFHnwJNwq+l0zTjNdGEVL/h/TyWJjfrcIIMt3r9VzVqdpEPFAOgmPJ+xFBiNcBmpYgSCLj9WiAE+GVFME=
+X-Received: by 2002:a2e:a595:0:b0:30c:4be7:1d42 with SMTP id
+ 38308e7fff4ca-30d7e2226b8mr28513211fa.12.1742719176937; Sun, 23 Mar 2025
+ 01:39:36 -0700 (PDT)
+From: Sivarajan Chitraikani <kcsivarajan@gmail.com>
+Date: Sun, 23 Mar 2025 14:09:27 +0530
+X-Gm-Features: AQ5f1JqxqtvIxPdH7GArLa1I3p_k-KgA4816fQYUoIARD291vhpJzV3f4P19_dM
+Message-ID: <CAEFQgta9jkdSM0J=8aWFDFLT5F5NKMoL0fON7fc4D_1xF9LZEA@mail.gmail.com>
+Subject: MID-A LOC $171.3MM 11-4-2022, TERM LOAN A-2 - Facility Lender Share Adjustment
+To: kcsivarajan@outlook.com
+Content-Type: multipart/alternative; boundary="0000000000007c1c520630fe6dae"
+X-IncomingHeaderCount: 15
+Return-Path: kcsivarajan@gmail.com
+X-MS-Exchange-Organization-ExpirationStartTime: 23 Mar 2025 08:39:38.9544
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: 35011fb6-e8b9-4fd8-e34b-08dd69e63fc1
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF00026368:EE_|TYSPR04MB8073:EE_|TYZPR04MB8148:EE_
+X-MS-Exchange-Organization-AuthSource: SN1PEPF00026368.namprd02.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-UserLastLogonTime: 3/23/2025 8:33:57 AM
+X-MS-Office365-Filtering-Correlation-Id: 35011fb6-e8b9-4fd8-e34b-08dd69e63fc1
+X-MS-Exchange-EOPDirect: true
+X-Sender-IP: 209.85.208.178
+X-SID-PRA: KCSIVARAJAN@GMAIL.COM
+X-SID-Result: PASS
+X-MS-Exchange-Organization-SCL: 5
+X-Microsoft-Antispam: BCL:0;ARA:1444111002|47200799021|13020799006|9020799016|461199028|58200799018|2100799027|2700799026|970799057|3412199025|440099028|16125499006|1360799030|1370799030|1380799030|56899033;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2025 08:39:38.9231
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35011fb6-e8b9-4fd8-e34b-08dd69e63fc1
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00026368.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR04MB8073
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:02.8949565
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.8534.033
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;ex:0;auth:1;dest:J;OFR:SpamFilterAuthJ;ENG:(5062000308)(920221119095)(90000117)(920221120095)(90005022)(91005020)(91035115)(9050020)(9100341)(944500132)(4810010)(4910033)(9610028)(9560006)(10180024)(9320005)(9245025)(120001);RF:JunkEmail;
+X-Message-Delivery: Vj0xLjE7dXM9MDtsPTA7YT0wO0Q9MjtHRD0xO1NDTD02
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?V2d2djd1Rk9lbkhxR3hnM0wrVmVIUUV0Zm16cnpYZmlxUktNZE1OZFRVZHBC?=
+ =?utf-8?B?TDc4b1RQNlhIM0Q4M3JvZU91QmJabUFLREJHUVJtL2hrNnFROUFXT0NCTmN4?=
+ =?utf-8?B?U1pXMTlsOUJNWDJ4VjVlZ00zd0kra3RZdmsyMnY0K1NEYTlud2F2SEhiMDVY?=
+ =?utf-8?B?VU5GcU1QRFYxTEUyZndRMGxBYVRBcTFVMjhRRTNxSElKVzFqLzVMamFlWE91?=
+ =?utf-8?B?anRwcDZydzBNYWpHNUV3TGdYcGd5dGJpdk9YZUd1WjJxYVNRNnBWS3RMM1lG?=
+ =?utf-8?B?TWF0SkZmdytVcDc0WUtkVHlKZCtjS2d4cVAxYjd6TnZNa2JtbEhHdzRPVXFG?=
+ =?utf-8?B?blRIM0VjUFVkYXM5SXhFdVkyU0ZIczVUdk12dGNxN1prR2U4Z2RiR2s1OVJZ?=
+ =?utf-8?B?NU5sRi84T2JPankwRm5SQm9ENmkrM2xJS1B4ZE02dkQveFMvUXlVTkU1MXRn?=
+ =?utf-8?B?RHZ2K3AxOGdZd2pDc1hWZ0RMczlzUmRuUGsyM1VrZW0xbG81czNnaTBHMU9i?=
+ =?utf-8?B?OXJUK2k1SUNoZXVjVlBFSXlhQitkTERFTHdqaHVweDBlNE4yS3N6aFFLbFcy?=
+ =?utf-8?B?a25pVFUxSG1xSURGcTJuekZqWlZCSFVPbXhORytEaDVRcFhrUG04UVhGVDdw?=
+ =?utf-8?B?YnZuMTFLNTA3L1hxZk1hYkliSzFZMElwaVk1RmtVTE5HQXNuY3RUc0g1VVUx?=
+ =?utf-8?B?VDR1a0hMMmMwMHdFM0wrUVhvTTdqdmdRL3NYR2VhMCtaM3ZiTG1LU093MktG?=
+ =?utf-8?B?Vmxia2dubndMdjJtSW5qcDgzV3N3VHVFdmV2cUxvcko2U0VzUE1UbG9tUHNr?=
+ =?utf-8?B?a0grQVU1OFQ0VHFLbGI5WktGK29uT3BXQ3lzZzFINlltYUdteEZvN0dmaHdT?=
+ =?utf-8?B?RWJOUXl0M0txdGx3VHNmNkRMMTg5OGtvWG1JSUVRMis1c21pMlc2VkRwdW9x?=
+ =?utf-8?B?OXhDbU5KRkw3UlFVSXRndUNjRjRqTEFXZHFNQXBlajJwcVVhK3o1cko4M0Yw?=
+ =?utf-8?B?KzZTdnpCZytaOGNmY3JUWC8rYnYzd0xnaGhFbk9OckFELzdYK3E0Q2ErMnZt?=
+ =?utf-8?B?UWdXdGlsd0dCMjZoRDRZMDBNL0tuaWdQbTZrWlNOaHhpWGxDQ1NWTnppRXYr?=
+ =?utf-8?B?RVhVSndBejdWTDc0b2RFdk5JRUZueHZwbVZZTzU2TUhVWmhpRlVIWGpTaGtN?=
+ =?utf-8?B?MUJEVE9FZ2xLR2YvMTFmSGpxMmNpZjJvUWJIZ2p0MTJWK3RlWnJQOGdjQmJZ?=
+ =?utf-8?B?bW0xbm9wVVBKMFdac1IvaXpEVjQyTXFOcWNqdTBxa2ViSUpTOTRmNXVzdWI5?=
+ =?utf-8?B?bmxJam9YcTM3ZGtGSDAyTEVFdE55NW5FZGQwaGdlK29JNFVJSy8rc2tndmJn?=
+ =?utf-8?B?Y2ZPNEpEOFhBZzJPVHo4aVJpbDZZUlhxWkg4RzVia2JsbVhQMjNQdk9hWUdI?=
+ =?utf-8?B?bjVyMktEMEEwNW1oSEFuN1E4OG5lVzJBdTcwdlQrQW9XSmVZdzhXSkdVQkxk?=
+ =?utf-8?B?Q0FyT0Nkb21TaCtwTWpBWWZGL0ZQNVhnNy91bGZDSkZDbnd0cHlFYUpRWHQz?=
+ =?utf-8?B?OEw4MzM0SjErczVrOXA1R1BtTm1Yb0pkVENxYnRBaFJkWXdHTno2cTFqcnZp?=
+ =?utf-8?B?SEJyTXY3YjFLcHBPclhiR0RISndwNGZsSi9tdk9mSU12WUtTZ3BoZW03KzBO?=
+ =?utf-8?B?anNkd29WZ0VucGtyeFYrYXk1QXNodFZYMjNOMWJubkRNa0VzdGZseER1Rmht?=
+ =?utf-8?B?eGc2bnpsTm1EVUVRb0RHa3FkSmlJQUpSLzZDWWxRcXRtY2htWVB1RU5ZVGZn?=
+ =?utf-8?B?OHpEQ1FkSHVVUVErZkFMOWtuNEJ2cHQrRG1Jc3hsZ3ZaQWNDRmUvcHc2RGN4?=
+ =?utf-8?B?VUx0QW9XNWlPaE10ZTJWMjVLSWQ2Y2FpSGtFbTluR3U3ZFgyM2Jldk9rNnpG?=
+ =?utf-8?B?ZktaTC9tTDBXRFI0YjZYWnRyV2RxWEduYVFnUSsva0N0UjQzNis3VjMvQlpH?=
+ =?utf-8?B?NWtxL2RVeGFnaGZDT1FhejJJSjlpTTg1WnY0RmY4RGJDYnA2eHl6OWcyanly?=
+ =?utf-8?B?eHZaUHErbVhPVGNVN2xNMmxOeXlZclhKelhkRkNCQ1YyNnpUMFIwYnNPeVZK?=
+ =?utf-8?B?SElrek9DYjJTWVZOcnk1czluRVk4ems3L0pHSFBoWkFDYTU0RzVtSTQ5czlv?=
+ =?utf-8?B?ZFZOSU1BTWdxS01DQmduenlwTFY4SmR3UjRPZ3lqczViVC9LaTR2ZXdJTHpB?=
+ =?utf-8?B?WjFIUVViVVBzaTdSLzdWNmF1NWY2clFMMzBkSWxISE1GZmdmVUdqWWI2RXQr?=
+ =?utf-8?B?UFJyMGpoTTV4aExGZ2lQRk12d3VrdTZHOWU1RW51S0Zpd0Q4YXljazhsY3RW?=
+ =?utf-8?B?TG1hK1ljZFJiMlNtZ3pUYnQ5MERnbUlrWUdrS1BBREdKSW9xaXR4ejI2cVhu?=
+ =?utf-8?B?eTQwWU9kNk9BSGRTblVuUDl1NjNkRlB1SFpKNnh5cUxncjMvOGJvZlVGNytV?=
+ =?utf-8?B?ME9YWHgyR3I2eVN1S0RuYkdyS1huK3ZWN1Y4WnNaM0dJTnc0dHpZcEozOXAz?=
+ =?utf-8?B?ZllZTHNxN2pSZ0xXZ1ZlTmxhdkhXVm83U3VvL0ZEeHZDWmhSQ1p6cWNVSWwv?=
+ =?utf-8?B?TGRPamJiaWlyWmp5b0pKYjZaR0NRSll6Y0xYTU0xeVA0MG9VaUxlVmF6R3lL?=
+ =?utf-8?B?STMyeEJhczhsNE5SSU56L2RRSUtpYjhtMU9nMnlaSUdpNU9iMlJJdnFXUTl0?=
+ =?utf-8?B?ck9zNk1aT3B3VHVaOUt6MjRrTm1aZVd4eFJqMWIzbGc0ckpGdkFGVzNZMm5t?=
+ =?utf-8?B?ZlJEWFJRT2RLUmJRaU1td3FYU2ZMUGlqYmxJVVdYbVRUdlNjOHp6U3JJSjE1?=
+ =?utf-8?B?THFldXhGS2JYbFRFdS9uOEY5eXo3UE5YV1ZhN2swTnBIcVhYbEtETnE0VFpq?=
+ =?utf-8?B?MjlFL3NDUUQ3aWhwUVhlMEZlQm9mSlRtSi9lS2d6TWVhWGwxb3MrN0VjWWp5?=
+ =?utf-8?B?R1Y3MWEzZ3QxbmpodTkzL3dJZUt3WjB2ays0Smx4blczOEN4cE9tZkQ4TGw1?=
+ =?utf-8?B?NnBxWWQyTFMyc2JBPT0=?=
+MIME-Version: 1.0
+
+--0000000000007c1c520630fe6dae
+Content-Type: text/plain; charset="UTF-8"
+
+BORROWER: ATLANTIC LLC
+DEAL NAME: TIC LLC $171.3MM 11-4-2022
+
+Effective 04-Feb-2025, the Lender Shares of facility TERM LOAN A-2 have
+been adjusted.
+Your share of the commitment was USD 5,518,249.19. It has been increased to
+USD 5,542,963.55.
+
+For: WELLS FARGO BANK, NA
+
+References: TIC LLC $171.3MM 11-4-2022,
+
+If you have any questions, please call the undersigned.
+
+PLEASE FUND YOUR SHARE OF $24,714.36 *** COMMENT
+
+Bank Name: Siva Bank, N.A.
+Bank Account: 12345692847
+
+Beneficiary: [REDACTED]
+
+For Further Credit To: [REDACTED]
+
+Citibank Commercial Bank is a brand name of Citigroup, N.A. Member FDIC.
+
+--0000000000007c1c520630fe6dae
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"><d=
+iv dir=3D"ltr">BORROWER: ATLANTIC LLC<br>DEAL NAME: TIC LLC $171.3MM 11-4-2=
+022<br><br>Effective 04-Feb-2025, the Lender Shares of facility TERM LOAN A=
+-2 have been adjusted.<br>Your share of the commitment was USD 5,518,249.19=
+. It has been increased to USD 5,542,963.55.<br><br>For: WELLS FARGO BANK, =
+NA<br><br>References: TIC LLC $171.3MM 11-4-2022,<br><br>If you have any qu=
+estions, please call the undersigned.<br><br>PLEASE FUND YOUR SHARE OF $24,=
+714.36 *** COMMENT<br><br>Bank Name: Siva Bank, N.A.<br>Bank Account: 12345=
+692847<br><br>Beneficiary: [REDACTED]<br><br>For Further Credit To: [REDACT=
+ED]<br><br>Citibank Commercial Bank is a brand name of Citigroup, N.A. Memb=
+er FDIC.</div>
+
+--0000000000007c1c520630fe6dae--

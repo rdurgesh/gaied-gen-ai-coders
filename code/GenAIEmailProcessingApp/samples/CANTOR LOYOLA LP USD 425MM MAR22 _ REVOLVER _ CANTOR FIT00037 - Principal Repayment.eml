@@ -1,0 +1,241 @@
+Received: from SEZPR04MB6970.apcprd04.prod.outlook.com (::1) by
+ TYZPR04MB8148.apcprd04.prod.outlook.com with HTTPS; Sun, 23 Mar 2025 08:38:42
+ +0000
+Received: from AS4P192CA0006.EURP192.PROD.OUTLOOK.COM (2603:10a6:20b:5da::7)
+ by SEZPR04MB6970.apcprd04.prod.outlook.com (2603:1096:101:ee::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.36; Sun, 23 Mar
+ 2025 08:38:40 +0000
+Received: from AMS0EPF000001A7.eurprd05.prod.outlook.com
+ (2603:10a6:20b:5da:cafe::d9) by AS4P192CA0006.outlook.office365.com
+ (2603:10a6:20b:5da::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.40 via Frontend Transport; Sun,
+ 23 Mar 2025 08:38:37 +0000
+Authentication-Results: spf=pass (sender IP is 209.85.208.182)
+ smtp.mailfrom=gmail.com; dkim=pass (signature was verified)
+ header.d=gmail.com;dmarc=pass action=none header.from=gmail.com;compauth=pass
+ reason=100
+Received-SPF: Pass (protection.outlook.com: domain of gmail.com designates
+ 209.85.208.182 as permitted sender) receiver=protection.outlook.com;
+ client-ip=209.85.208.182; helo=mail-lj1-f182.google.com; pr=C
+Received: from mail-lj1-f182.google.com (209.85.208.182) by
+ AMS0EPF000001A7.mail.protection.outlook.com (10.167.16.234) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.8534.20
+ via Frontend Transport; Sun, 23 Mar 2025 08:38:37 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:CDF52397B11005C0BE1AA23DA972F777251BB4ACCD9D827C4AD3E02C48A10531;UpperCasedChecksum:E2F2B945221B07C5FEFADB6A597984B42AF19850B415C7FA1949DEFE50026457;SizeAsReceived:2753;Count:15
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-30762598511so38234991fa.0
+        for <kcsivarajan@outlook.com>; Sun, 23 Mar 2025 01:38:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742719116; x=1743323916; darn=outlook.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Ea1V2gRyjJDYFlI9r93nepvWHPcyP6423oeOZ7v64bc=;
+        b=D37Rvm8++615MydFwvOE1lUF11wbF1OImDRYQUUmbdkwR7xW3bhgrY9Ay5zZyk/4Zq
+         UNe1wABX5WRNZ0DA1+kE3+KGkBMC3oxYCPEmcY4PGGPOuqHmVGRyNwbrJgcjqEHiyoan
+         aMA/BdexubiH1jZdQyXwyn5+F7Dlf7uZ9UKqJos7xtYmqpmQzLAH9fNUeuDn+8ZL+Pnh
+         t+Ykvb9jHyciUmvzowWNI5Oo/vAQITz3+Ft3MqPy2Xnl7RVcjgM0xxuwJiyqkvs5bQWx
+         /gKfGDsIdFpo2jkwOIaV/32jWMtg7VFHVQ9p3IhMYAJtyj1udsB1+kgE3nC9wvDPwdC9
+         D8Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742719116; x=1743323916;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ea1V2gRyjJDYFlI9r93nepvWHPcyP6423oeOZ7v64bc=;
+        b=c5XA8korcYZcEx18GpmLvVD24tEQUX8SZYDGicUqWmeRrUo/kn8tgflqOrzHrZg8dX
+         KQg5FE+okc3KqvZa1mvN9FtZxOrne5DgH5J/JFLkuB1VUTin5MXfAvOIaAeRVR49TDIM
+         YVEZYCqiFrWD0D7tu1LZIVspINtNnbCSPehRpDrmdxYPEATrOtVGO6EnwBmiDlSjJPho
+         5zTIhH+/ejlLJ8ehSdLRp0eWD4Cn2R4eh0EvfB8PCCsxlJa5JeUX55wFCAgRF4SLZTpB
+         W4pEDWd/9uamAVF6PGjkRXWUua0MkatXREktnNZKjNuegqZuRP3ynQXeLOLEU7YdJ1vh
+         STgw==
+X-Gm-Message-State: AOJu0YxOdKkJYaOYNK9qfZ35wFbU9EGqXUt2eiAoczg3XEaBfRieXhsY
+	zwDDN71HmwfnRoFU/4+NIK4ZiJvG8MKiE8wLNKHb+DkQ+7Ek6h6Nbaf3wuS3xCmnqVrwFr4Jjeq
+	zh5UUgUuKAGC67pKA/VRX783HOTQMQLc1Kcg=
+X-Gm-Gg: ASbGnctRyBUKyyJdyzEQGOb9oHGFHCv+O0/2/CuS9libGkITwDVgHOOf8jiUylc2beF
+	7mt4d0B/maIMJnrVtVBhySlLnkdGfFAFDr5wWJd1NqECafvtAz9Te0gtfBSur5bf00CccnWCmGZ
+	XpBRd25Po2qkcEtcHhUgP/+njdug==
+X-Google-Smtp-Source: AGHT+IH8rKPB8J7ruIv8hiQvrOUF4tvUhuTz7JxXosqdqdgYiPwqopF5lG4Hv06rd3L7Jxz1gMHcBn+OQmXKwm4+aDY=
+X-Received: by 2002:a05:6512:3d94:b0:549:c1e6:cbb9 with SMTP id
+ 2adb3069b0e04-54ad6470679mr3219057e87.9.1742719116377; Sun, 23 Mar 2025
+ 01:38:36 -0700 (PDT)
+From: Sivarajan Chitraikani <kcsivarajan@gmail.com>
+Date: Sun, 23 Mar 2025 14:08:26 +0530
+X-Gm-Features: AQ5f1Jq55cwkXjhlggZ3PbfNZCVYkIeYtkE0SGnUb7EDeGhNjN7ffobBNaZWoh8
+Message-ID: <CAEFQgtaNUh+vwfG7AS_cbFH1z1WS=LcMnENpYZrgB3b3VDW=mQ@mail.gmail.com>
+Subject: CANTOR LOYOLA LP USD 425MM MAR22 / REVOLVER / CANTOR FIT00037 -
+ Principal Repayment
+To: kcsivarajan@outlook.com
+Content-Type: multipart/alternative; boundary="000000000000e00c650630fe6954"
+X-IncomingHeaderCount: 15
+Return-Path: kcsivarajan@gmail.com
+X-MS-Exchange-Organization-ExpirationStartTime: 23 Mar 2025 08:38:37.7634
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id: aba316d4-b468-4272-e35e-08dd69e61b48
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF000001A7:EE_|SEZPR04MB6970:EE_|TYZPR04MB8148:EE_
+X-MS-Exchange-Organization-AuthSource: AMS0EPF000001A7.eurprd05.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-UserLastLogonTime: 3/23/2025 8:33:57 AM
+X-MS-Office365-Filtering-Correlation-Id: aba316d4-b468-4272-e35e-08dd69e61b48
+X-MS-Exchange-EOPDirect: true
+X-Sender-IP: 209.85.208.182
+X-SID-PRA: KCSIVARAJAN@GMAIL.COM
+X-SID-Result: PASS
+X-MS-Exchange-Organization-SCL: 5
+X-Microsoft-Antispam: BCL:0;ARA:1444111002|58200799018|2700799026|461199028|13020799006|9020799016|2100799027|970799057|47200799021|440099028|3412199025|16125499006|1380799030|1370799030|1360799030|56899033;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2025 08:38:37.6384
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aba316d4-b468-4272-e35e-08dd69e61b48
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: AMS0EPF000001A7.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR04MB6970
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:04.5769248
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.8534.033
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;ex:0;auth:1;dest:J;OFR:SpamFilterAuthJ;ENG:(5062000308)(920221119095)(90000117)(920221120095)(90005022)(91005020)(91035115)(9050020)(9100341)(944500132)(4810010)(4910033)(9610028)(9560006)(10180024)(9320005)(9245025)(120001);RF:JunkEmail;
+X-Message-Delivery: Vj0xLjE7dXM9MDtsPTA7YT0wO0Q9MjtHRD0xO1NDTD02
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RnoraUhsaFFuMERPbytwTk5aMlp0eDREMGxEU3dTRVEyZkdkMHl6ZzNENjBt?=
+ =?utf-8?B?VTl5VnpQNWFJODR1Z0hLN2hOSElnc2NJV3Jaa3kxZ2pKaVlRZkE0YS8rcDY1?=
+ =?utf-8?B?OEVWajBSNXdYZ2xVdXB6QzRvendSdzNhUDByUTRra1NaaWthOHp4eitBTXJE?=
+ =?utf-8?B?NUcvN09aUHFwSmt0Q01UajRFb25vblBzZUw2ajEyazlTUm9LN3h4MFMvbjh1?=
+ =?utf-8?B?cDBnaGRiL0orTjdlK1lGbE85UlBXNmExVnZvTmFIK2Vvd1NZb3BYL0dDN0J1?=
+ =?utf-8?B?L1lXcWp1WmtZZ0JCeVE4OFFXM0VIdVFiaUJ0N2VSMjNGY3EzWnBGdUpWNU9O?=
+ =?utf-8?B?Vm85TlRneWJUTy9CMS9rbGlsa0NuNENNeS9hVEpEd21LZ3lUSFFoNUpBdDZR?=
+ =?utf-8?B?WE0yRUhMV2hiQ3VvYStIc1k0V2E1eEd2c2h6aUdFRUxEekY5VkhsZktETVRP?=
+ =?utf-8?B?TU1qSVlqSWdxTUxHaW4xYVNESUFsWFVYV0trQUR3Zzg1N0VNU0d1cHY2V1Z3?=
+ =?utf-8?B?SHk4T1kvZHJTQ3hoSWtXQ1NEbFRaVWVkOUY0Q0FFYlpMWHVpcG4wQUNzQnNN?=
+ =?utf-8?B?YVRuc1B1ZzViVXZ2UllDVi8xTGFaSkN6YTNaK0J0VVRmUHNzSU9kS0YrSWRu?=
+ =?utf-8?B?eDd5RXM5bEk3QzZuYzhwWi9hRVp5QkhTTlRwVlhJOFI5T0F1UVJRdzZpMm93?=
+ =?utf-8?B?MnNwK0J3TGp3QzYvV2JCNktXQ3BQWjhLdE1vcnExV1EycGV3NkhtU0FyS2xy?=
+ =?utf-8?B?LzIwbDNjMWZRdG5sa3RLRVNsZDNKWnlTRmlKUzB6V21YNHZrMmpDZVFFRWEz?=
+ =?utf-8?B?NVFDMHBDZ0dvaTNRM0JvcklVS0hmeEZSUUlBNGg5TkxURGQ4UUVINXdITzZE?=
+ =?utf-8?B?bVNYTGIwSnpFZ0toRm4zZ2UxWXViTXVTaE5WakRualZVQWtrVGdwdUl6N3FQ?=
+ =?utf-8?B?TXNrVEZPZFB6citOeWZsRjlxT3FDM0pvRGFYN29vOW5Xc24zR2hQd05xMW9D?=
+ =?utf-8?B?Ulh3eW1tSXBDcm90RXFhVXdPQlJydEZKRFI2RitrUyszOGI4NVZFMFVJN0hz?=
+ =?utf-8?B?NEdQNUxxRWlaSlRQZlgvYWpJQitmOW1kai9pVGFkOUkvaXlOVDZJOFV4N0Rx?=
+ =?utf-8?B?QWM4YVFjUzJCNXF5WGpmUHNoZlFWSUxraGRmWTcxeUdwM20yZEFxNlJWYmdD?=
+ =?utf-8?B?azl0SzNlVDB6L3FYSk8yRGZtOTNPS255OFdoUGF3TDdjdC9zczgrYjFSQ01U?=
+ =?utf-8?B?a1FVLzJQUTN3dDZTZDVyWjlYblM0YnY1NlpVbklIZmJDZFUrNXorcm5ncTU5?=
+ =?utf-8?B?ai9Rd1prK05zd1kzQjZua0ZVWklGVVJMcVpIdWhFUWZHUFpyMVUyYU9XSjM4?=
+ =?utf-8?B?cWIzeTNWdFpabDFaMkFqNXZEcXQ2K0wzd3hLbmM2NHJ0U3AramNyVVQyQmtt?=
+ =?utf-8?B?OWF2dnJwc01Za0VWY0tRaGNMMlVEK3ZnMkpldktqcHA0ajJCT2VaNW5WNlRN?=
+ =?utf-8?B?NXB5dDRBeVJhRE1UVmFiZzN2TGZaaHAxbVptTE8wMU85NEpUWjJrYk1xSVRT?=
+ =?utf-8?B?QTNSbGFPdGQ5azdTRWVmTjg2clhlV1F6dlpQNll1TnhldjFxdTFpQ1ZWYzdD?=
+ =?utf-8?B?MVlLS2Zwc0IxeERRRXFKUTA4Wld0VHF1K3QzTTM1RkY4RFdsVW4yN3lLOUNI?=
+ =?utf-8?B?NlJ6aldnYVdDcXNTUGpmbVVlSjlhNDVHNHA0N3JKVnhnMHBzZ2o0NXA2M2Ux?=
+ =?utf-8?B?UnprTGNKc3Z3Z3VhOXduYzVtQUdzMTQyNnY3YjBvVnprZEdUTWVuNXAvN1Fy?=
+ =?utf-8?B?K3BUckNIb2ZKcTE4RWE4aW9pcWcyTS9oWVpaOGc5RDVYQVJVVXlqTUw2U2xO?=
+ =?utf-8?B?aE8zQitLWnBKbTJ0QUtCL3ZOVVlCS0tCSUY5ZXhqZG92dW5lUWc2QVI1eWRm?=
+ =?utf-8?B?Y0ZFRFBneHdIczFNM3FnMnBrUEJlVHNxcWkvTi9oZXVjRlZBYVg4U3RUZ2Jq?=
+ =?utf-8?B?R3Z5cFBoUFV5TU9IK3ZNODY5T2psaVljUnJ2US9xdHpVeGVMMW5MMjFhSTAz?=
+ =?utf-8?B?UVNYdVA3YmRwazJSVGxLeVZBN2xIK3Q2OWdiQ3lGMVh1RERtTlBKQjR1ZkRX?=
+ =?utf-8?B?ejBpRXVjRmltVUNZb29oYmRqdlpaK3NNdy9SZnlRSTBuLzlhRFdnbTVZV2Ra?=
+ =?utf-8?B?cC9NREVwK05mVy9kY2t6bENERlZYVUpoZlpWQ1JqWDdHSVRtd1RKSEFnL1lS?=
+ =?utf-8?B?alp0ckF1OVp6MFdZNlpTanB1cUlha3VrWThGQnpGTGlWcjhoNUtFeUFIclpB?=
+ =?utf-8?B?T0dmM3lvQ3BNTU1SN01YWlBFQmxyRW9pVGJBT1JheWJHcjNHa1lxYWxocVhn?=
+ =?utf-8?B?bTBKOGFRakZqWTRWZEMvVWZvMDZ5OWtraTRzY3J0KzJzYzRudURLUkVoakMz?=
+ =?utf-8?B?NVFQM0NqV0JJVCtNQThYRytIUzVkVGxFZFVSaDdycDVZTm5iYi9YVTA0c2tY?=
+ =?utf-8?B?T01NdUNUTlEzS25RTzhBb2x0MGpJYTViOFo5cG5XblN4RFNFQ1lLbnErL1JY?=
+ =?utf-8?B?RXFTTHhvZ3hMNlFNbExQRkUxc1BrZTJGLzJnQjJPS2xMZFdxaGx4N1FjWjlm?=
+ =?utf-8?B?TmJ4UEpFdWFYbTdXWVlqcURsdGQwOVpXUmdGdTcvQm9LUjJQV0MrbG9EZlJV?=
+ =?utf-8?B?VUJsVExPN29aakZJU1lFdGRDMUQwZzZGb2Q5ODFPL3NoTVpYOHlpR3NvT3o0?=
+ =?utf-8?B?a1BkY0JqL3R6dUpuaS9MOTQrZUt1T1FWRXMzRHBHbXltVGhGN281NzJrdkxW?=
+ =?utf-8?B?QXk2dXFid1BXalg0VE1sNHNMclRXRXZZNkFXQ2lkdUtqMEh5c3lQQXU0aVMz?=
+ =?utf-8?B?WXhLWmQvODBrWUNjUFdUK3ZlYzc3Q0o0NVZ4VG42L21hckN2QnB2MGRnUkgz?=
+ =?utf-8?B?QWVVT3RxR1lxdWJERmRXcnpOYTdSblh6RW1ZNW9DWjd3MmJIQ1BpUC9lbm5B?=
+ =?utf-8?B?eGtOMzgyVWVTTmRhblJPNHVjTG9XeVAzRUVvYWJqWi9CUFg3aTRMcGdmR21n?=
+ =?utf-8?B?QXNyak1DZjZTcTBnPT0=?=
+MIME-Version: 1.0
+
+--000000000000e00c650630fe6954
+Content-Type: text/plain; charset="UTF-8"
+
+Date: 8-Nov-2023
+
+ATTN: AGENT DEFAULT
+
+Phone: 999-999-9999
+Fax: 877-606-9426
+Email: DEN
+
+Re: CANTOR LOYOLA LP USD 425MM MAR22 / REVOLVER / CANTOR FIT00037
+
+Deal CUSIP: 12345EAEO
+Deal ISIN: US13861EAE05
+Facility CUSIP: 12345EAF7
+Facility ISIN: US13861EAF79
+Lender MEL: US1X
+
+Effective 10-Nov-2023, CANTOR LOYOLA LP has elected to repay under the SOFR
+(US) Term option, a total of USD 20,000,000.00
+
+Previous Global principal balance: USD 45,000,000.00
+New Global principal balance: USD 25,000,000.00
+
+This loan was effective 20-Jul-2023 and is scheduled to reprice on
+20-Nov-2023.
+
+Your share of the USD 20,000,000.00 SOFR (US) Term option payment is USD
+1,411,764.71
+Previous Lender Share Principal Balance: USD 3,176,470.59
+New Lender Share Principal Balance: USD 1,764,705.88
+
+We will remit USD 1,411,764.71 on the effective date. Please note that (i)
+if the Borrower has not in fact made such payment; or (ii) any payment you
+receive is in excess of what was paid by the Borrower or (iii) we notify
+you that the payment was erroneously made, then pursuant to the provisions
+of the credit facility, you agree to return such payment.
+
+For: WELLS FARGO BANK NATIONAL ASSOCIATION
+To: WELLS FARGO BANK, NA
+
+ABA Number: 1248
+Account No: XXXXXXXXXX0720
+
+Reference: CANTOR LOYOLA LP USD 425MM MAR22, SOFR (US) Term Principal
+Payment (CANTOR FIT00067)
+
+Thanks & Regards,
+
+JOHN DOE
+Telephone: B 1986
+Email: john.doe@xyz.com
+
+--000000000000e00c650630fe6954
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"><d=
+iv dir=3D"ltr">Date: 8-Nov-2023<br><br>ATTN: AGENT DEFAULT<br><br>Phone: 99=
+9-999-9999<br>Fax: 877-606-9426<br>Email: DEN<br><br>Re: CANTOR LOYOLA LP U=
+SD 425MM MAR22 / REVOLVER / CANTOR FIT00037<br><br>Deal CUSIP: 12345EAEO<br=
+>Deal ISIN: US13861EAE05<br>Facility CUSIP: 12345EAF7<br>Facility ISIN: US1=
+3861EAF79<br>Lender MEL: US1X<br><br>Effective 10-Nov-2023, CANTOR LOYOLA L=
+P has elected to repay under the SOFR (US) Term option, a total of USD 20,0=
+00,000.00<br><br>Previous Global principal balance: USD 45,000,000.00<br>Ne=
+w Global principal balance: USD 25,000,000.00<br><br>This loan was effectiv=
+e 20-Jul-2023 and is scheduled to reprice on 20-Nov-2023.<br><br>Your share=
+ of the USD 20,000,000.00 SOFR (US) Term option payment is USD 1,411,764.71=
+<br>Previous Lender Share Principal Balance: USD 3,176,470.59<br>New Lender=
+ Share Principal Balance: USD 1,764,705.88<br><br>We will remit USD 1,411,7=
+64.71 on the effective date. Please note that (i) if the Borrower has not i=
+n fact made such payment; or (ii) any payment you receive is in excess of w=
+hat was paid by the Borrower or (iii) we notify you that the payment was er=
+roneously made, then pursuant to the provisions of the credit facility, you=
+ agree to return such payment.<br><br>For: WELLS FARGO BANK NATIONAL ASSOCI=
+ATION<br>To: WELLS FARGO BANK, NA<br><br>ABA Number: 1248<br>Account No: XX=
+XXXXXXXX0720<br><br>Reference: CANTOR LOYOLA LP USD 425MM MAR22, SOFR (US) =
+Term Principal Payment (CANTOR FIT00067)<br><br>Thanks &amp; Regards,<br><b=
+r>JOHN DOE<br>Telephone: B 1986<br>Email: <a href=3D"mailto:john.doe@xyz.co=
+m">john.doe@xyz.com</a></div>
+
+--000000000000e00c650630fe6954--
