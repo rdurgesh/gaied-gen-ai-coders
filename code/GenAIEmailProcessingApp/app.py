@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 from util.email_classification import summarize_eml_file
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+Bootstrap(app)
 
 @app.route("/")
 def index():

@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index Page</title>
+    {{ bootstrap.load_css() }}
 </head>
 <body>
-    <h1>Welcome to the Index Page</h1>
-    <p>This is a template for the index page.</p>
-    <form action="/process_email" method="post" enctype="multipart/form-data">
-        <label for="file">Choose file:</label>
-        <input type="file" id="file" name="file"><br><br>
-        <label for="param1">Parameter 1:</label>
-        <input type="text" id="param1" name="param1"><br><br>
-        <label for="param2">Parameter 2:</label>
-        <input type="text" id="param2" name="param2"><br><br>
-        <input type="submit" value="Upload">
-    </form>
+    <div class="container">
+        <h1 class="mt-5">Welcome to the Index Page</h1>
+        <p>This is a template for the index page.</p>
+        <form action="/process_email" method="post" enctype="multipart/form-data" class="mt-4">
+            <div class="form-group">
+                <label for="file">Choose file:</label>
+                <input type="file" id="file" name="file" class="form-control-file">
+            </div>
+            <div class="form-group">
+                <label for="param1">Parameter 1:</label>
+                <input type="text" id="param1" name="param1" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="param2">Parameter 2:</label>
+                <input type="text" id="param2" name="param2" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+    {{ bootstrap.load_js() }}
 </body>
 </html>

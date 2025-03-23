@@ -1,15 +1,10 @@
-import email
-from google import genai
 import os
 import json
+from google import genai
 
 def summarize_eml_file(uploaded_file):
     print("Starting to summarize the email file.")
-    msg = email.message_from_bytes(uploaded_file.read())
-    if msg.is_multipart():
-        content = ''.join(part.get_payload(decode=True).decode() for part in msg.get_payload())
-    else:
-        content = msg.get_payload(decode=True).decode()
+    content = uploaded_file.read().decode()
     print("Email content extracted.")
 
     # Load request types for classification
