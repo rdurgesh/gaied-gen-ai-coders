@@ -10,7 +10,7 @@
     <div class="container">
         <h1 class="mt-5">Welcome to the Index Page</h1>
         <p>This is a template for the index page.</p>
-        <form action="/process_email" method="post" enctype="multipart/form-data" class="mt-4">
+        <form id="uploadForm" class="mt-4">
             <div class="form-group">
                 <label for="file">Choose file:</label>
                 <input type="file" id="file" name="file" class="form-control-file">
@@ -25,7 +25,64 @@
             </div>
             <button type="submit" class="btn btn-primary">Upload</button>
         </form>
+        <div id="result" class="mt-4">
+            <h2>Result</h2>            
+            <h3>Summary</h3>
+            <pre id="summary"></pre>
+            <h3>Request Classification</h3>
+            <pre id="requestClassification"></pre>
+            <h3>Key Fields</h3>
+            <pre id="keyFields"></pre>            
+        </div>
     </div>
     {{ bootstrap.load_js() }}
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            fetch('/process_email', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+              .then(data => {
+                  console.log(data);
+                  
+                  // Display all fields in summary JSON
+                  let summaryContainer = document.getElementById('summary');
+                  summaryContainer.innerHTML = '';
+                  
+                  // Display summary text
+                  let summaryText = document.createElement('p');
+                  summaryText.textContent = data.summary.summary;
+                  summaryContainer.appendChild(summaryText);
+
+                  // Display all fields in keyFields JSON
+                  let keyFieldsContainer = document.getElementById('keyFields');
+                  keyFieldsContainer.innerHTML = '';
+                  for (let key in data.summary.keyFields) {
+                      if (data.summary.keyFields.hasOwnProperty(key)) {
+                          let p = document.createElement('p');
+                          p.textContent = `${key}: ${data.summary.keyFields[key]}`;
+                          keyFieldsContainer.appendChild(p);
+                      }
+                  }
+
+                  
+
+                  // Display all fields in requestClassification JSON
+                  let requestClassificationContainer = document.getElementById('requestClassification');
+                  requestClassificationContainer.innerHTML = '';
+                  for (let key in data.summary.requestClassification) {
+                      if (data.summary.requestClassification.hasOwnProperty(key)) {
+                          let p = document.createElement('p');
+                          p.textContent = `${key}: ${data.summary.requestClassification[key]}`;
+                          requestClassificationContainer.appendChild(p);
+                      }
+                  }
+              }).catch(error => {
+                  console.error('Error:', error);                  
+              });
+        });
+    </script>
 </body>
 </html>
