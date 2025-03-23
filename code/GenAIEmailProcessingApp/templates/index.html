@@ -39,6 +39,17 @@
     <script>
         document.getElementById('uploadForm').addEventListener('submit', function(event) {
             event.preventDefault();
+            
+            // Clear previous results
+            document.getElementById('summary').innerHTML = '';
+            document.getElementById('requestClassification').innerHTML = '';
+            document.getElementById('keyFields').innerHTML = '';
+            
+            // Display loading message
+            document.getElementById('summary').textContent = 'Loading...';
+            document.getElementById('requestClassification').textContent = 'Loading...';
+            document.getElementById('keyFields').textContent = 'Loading...';
+
             var formData = new FormData(this);
             fetch('/process_email', {
                 method: 'POST',
@@ -66,8 +77,6 @@
                           keyFieldsContainer.appendChild(p);
                       }
                   }
-
-                  
 
                   // Display all fields in requestClassification JSON
                   let requestClassificationContainer = document.getElementById('requestClassification');
