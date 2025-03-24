@@ -23,7 +23,7 @@ def summarize_eml_file(uploaded_file_path):
     print("GenAI client initialized.")
     response = client.models.generate_content(
         model="gemini-2.0-flash", 
-        contents=f"(summarize as 'summary', classify based on the following request types {request_types} as list of 'requestClassification' & its confidence score, extract key fields as 'keyFields') group by message & return it in json format. {content}"
+        contents=f"(summarize as 'summary', classify based on the following request types {request_types} as list of 'requestClassification' & its confidence score as 'confidenceScore', extract key fields as 'keyFields') group by message & return it in json format. {content}"
     )
     print("Received response from GenAI.")
     return response.text
