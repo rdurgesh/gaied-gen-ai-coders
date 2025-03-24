@@ -34,7 +34,7 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
-        context: code\GenAIEmailProcessingApp
+        context: code/GenAIEmailProcessingApp
         push: true
         tags: gcr.io/${{ secrets.GCP_PROJECT_ID }}/genai-email-processing-app:latest
 
