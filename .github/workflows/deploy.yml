@@ -65,4 +65,4 @@ jobs:
           --platform managed \
           --region ${{ secrets.GCP_REGION }} \
           --allow-unauthenticated \
-          --port 8080:5000
+          --port 8080
