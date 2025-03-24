@@ -174,3 +174,4 @@ cython_debug/
 .pypirc
 code/GenAIEmailProcessingApp/doc/
 code/GenAIEmailProcessingApp/output/
+code/GenAIEmailProcessingApp/uploads/

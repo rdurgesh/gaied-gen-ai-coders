@@ -1,9 +1,14 @@
+import os
 from flask import Flask, render_template, request, jsonify
 from util.email_classification import summarize_eml_file
 from flask_bootstrap import Bootstrap
 import json
 
 app = Flask(__name__)
+# Define the upload folder
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 Bootstrap(app)
 
 @app.route("/")
@@ -18,7 +23,14 @@ def process_email():
         param2 = request.form.get("param2")
         # Process the file and parameters here
         if file:
-            summary = summarize_eml_file(file)
+            # Get the filename
+            filename = file.filename
+            # Construct the full filepath
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            # Save the file
+            file.save(filepath)
+        
+            summary = summarize_eml_file(filepath)
             summary = summary.replace("```json", "").replace("```", "")  # Remove JSON formatting
             print(summary)
         else:
@@ -29,7 +41,7 @@ def process_email():
             "file_name": file.filename if file else None,
             "param1": param1,
             "param2": param2,
-            "summary": json.loads(summary)  # Convert summary to JSON object
+            "results": json.loads(summary)  # Convert summary to JSON object
         }
         return jsonify(response)
     return render_template("upload.html")
