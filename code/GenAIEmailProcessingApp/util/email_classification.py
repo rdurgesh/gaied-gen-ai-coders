@@ -2,9 +2,11 @@ import os
 import json
 from google import genai
 
-def summarize_eml_file(uploaded_file):
+from .document_extractor import read_data_from_file
+
+def summarize_eml_file(uploaded_file_path):
     print("Starting to summarize the email file.")
-    content = uploaded_file.read().decode()
+    content = read_data_from_file(uploaded_file_path)
     print("Email content extracted.")
 
     # Load request types for classification
@@ -21,7 +23,7 @@ def summarize_eml_file(uploaded_file):
     print("GenAI client initialized.")
     response = client.models.generate_content(
         model="gemini-2.0-flash", 
-        contents=f"summarize as 'summary', classify based on the following request types {request_types} as 'requestClassification' & its confidence score, extract key fields as 'keyFields'   & return it in json format. Scan attachments for eml files : {content}"
+        contents=f"(summarize as 'summary', classify based on the following request types {request_types} as list of 'requestClassification' & its confidence score as 'confidenceScore', extract key fields as 'keyFields') group by message & return it in json format. {content}"
     )
     print("Received response from GenAI.")
     return response.text

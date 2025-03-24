@@ -8,31 +8,17 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Welcome to the Index Page</h1>
-        <p>This is a template for the index page.</p>
+        <h1 class="mt-5">Welcome to the Email Processing Page</h1>
         <form id="uploadForm" class="mt-4">
             <div class="form-group">
                 <label for="file">Choose file:</label>
                 <input type="file" id="file" name="file" class="form-control-file">
-            </div>
-            <div class="form-group">
-                <label for="param1">Parameter 1:</label>
-                <input type="text" id="param1" name="param1" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="param2">Parameter 2:</label>
-                <input type="text" id="param2" name="param2" class="form-control">
-            </div>
+            </div>            
             <button type="submit" class="btn btn-primary">Upload</button>
         </form>
         <div id="result" class="mt-4">
             <h2>Result</h2>            
-            <h3>Summary</h3>
-            <pre id="summary"></pre>
-            <h3>Request Classification</h3>
-            <pre id="requestClassification"></pre>
-            <h3>Key Fields</h3>
-            <pre id="keyFields"></pre>            
+            <div id="resultsContainer"></div>
         </div>
     </div>
     {{ bootstrap.load_js() }}
@@ -41,14 +27,10 @@
             event.preventDefault();
             
             // Clear previous results
-            document.getElementById('summary').innerHTML = '';
-            document.getElementById('requestClassification').innerHTML = '';
-            document.getElementById('keyFields').innerHTML = '';
+            document.getElementById('resultsContainer').innerHTML = '';
             
             // Display loading message
-            document.getElementById('summary').textContent = 'Loading...';
-            document.getElementById('requestClassification').textContent = 'Loading...';
-            document.getElementById('keyFields').textContent = 'Loading...';
+            document.getElementById('resultsContainer').textContent = 'Loading...';
 
             var formData = new FormData(this);
             fetch('/process_email', {
@@ -57,41 +39,131 @@
             }).then(response => response.json())
               .then(data => {
                   console.log(data);
-                  
-                  // Display all fields in summary JSON
-                  let summaryContainer = document.getElementById('summary');
-                  summaryContainer.innerHTML = '';
-                  
-                  // Display summary text
-                  let summaryText = document.createElement('p');
-                  summaryText.textContent = data.summary.summary;
-                  summaryContainer.appendChild(summaryText);
+                  document.getElementById('resultsContainer').innerHTML = '';
 
-                  // Display all fields in keyFields JSON
-                  let keyFieldsContainer = document.getElementById('keyFields');
-                  keyFieldsContainer.innerHTML = '';
-                  for (let key in data.summary.keyFields) {
-                      if (data.summary.keyFields.hasOwnProperty(key)) {
-                          let p = document.createElement('p');
-                          p.textContent = `${key}: ${data.summary.keyFields[key]}`;
-                          keyFieldsContainer.appendChild(p);
-                      }
-                  }
+                  if (Array.isArray(data.results)) {
+                        data.results.forEach(result => {
+                            var table = document.createElement('table');
+                            table.classList.add('table', 'table-bordered', 'mt-4');
+                            
+                            var tbody = document.createElement('tbody');
+                            
+                            // Add message as a header
+                            var messageHeader = document.createElement('tr');
+                            var messageCell = document.createElement('td');
+                            messageCell.colSpan = 2;
+                            messageCell.textContent = result.message;
+                            messageCell.classList.add('font-weight-bold');
+                            messageHeader.appendChild(messageCell);
+                            tbody.appendChild(messageHeader);
 
-                  // Display all fields in requestClassification JSON
-                  let requestClassificationContainer = document.getElementById('requestClassification');
-                  requestClassificationContainer.innerHTML = '';
-                  for (let key in data.summary.requestClassification) {
-                      if (data.summary.requestClassification.hasOwnProperty(key)) {
-                          let p = document.createElement('p');
-                          p.textContent = `${key}: ${data.summary.requestClassification[key]}`;
-                          requestClassificationContainer.appendChild(p);
-                      }
+                            var rows = [
+                                { title: 'Summary', value: result.summary },
+                                { title: 'Request Details', value: createRequestDetailsTable(result.requestClassification) },
+                                { title: 'Key Fields', value: createKeyFieldsTable(result.keyFields) }
+                            ];
+
+                            rows.forEach(rowData => {
+                                var row = document.createElement('tr');
+                                
+                                var titleCell = document.createElement('td');
+                                titleCell.textContent = rowData.title;
+                                row.appendChild(titleCell);
+
+                                var valueCell = document.createElement('td');
+                                if (rowData.title === 'Request Details' || rowData.title === 'Key Fields') {
+                                    valueCell.appendChild(rowData.value);
+                                } else {
+                                    valueCell.textContent = rowData.value;
+                                }
+                                row.appendChild(valueCell);
+
+                                tbody.appendChild(row);
+                            });
+                            table.appendChild(tbody);
+                            document.getElementById('resultsContainer').appendChild(table);
+                        });
+                  } else {
+                      console.error('Error: data is not an array');
                   }
               }).catch(error => {
                   console.error('Error:', error);                  
               });
         });
+
+        function createRequestDetailsTable(requestClassification) {
+            var table = document.createElement('table');
+            table.classList.add('table', 'table-sm', 'table-striped');
+
+            var thead = document.createElement('thead');
+            var headerRow = document.createElement('tr');
+            var headers = ['Type', 'Sub Types', 'Confidence'];
+            headers.forEach(headerText => {
+                var th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            var tbody = document.createElement('tbody');
+            requestClassification.forEach(rc => {
+                var row = document.createElement('tr');
+
+                var typeCell = document.createElement('td');
+                typeCell.textContent = rc.requestType;
+                row.appendChild(typeCell);
+
+                var subTypesCell = document.createElement('td');
+                subTypesCell.textContent = rc.subRequestTypes.join(', ');
+                row.appendChild(subTypesCell);
+
+                var confidenceCell = document.createElement('td');
+                confidenceCell.textContent = rc.confidenceScore;
+                row.appendChild(confidenceCell);
+
+                tbody.appendChild(row);
+            });
+            table.appendChild(tbody);
+
+            return table;
+        }
+
+        function createKeyFieldsTable(keyFields) {
+            var table = document.createElement('table');
+            table.classList.add('table', 'table-sm', 'table-striped');
+
+            var thead = document.createElement('thead');
+            var headerRow = document.createElement('tr');
+            var headers = ['Field', 'Value'];
+            headers.forEach(headerText => {
+                var th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            var tbody = document.createElement('tbody');
+            for (var key in keyFields) {
+                if (keyFields.hasOwnProperty(key)) {
+                    var row = document.createElement('tr');
+
+                    var fieldCell = document.createElement('td');
+                    fieldCell.textContent = key;
+                    row.appendChild(fieldCell);
+
+                    var valueCell = document.createElement('td');
+                    valueCell.textContent = keyFields[key];
+                    row.appendChild(valueCell);
+
+                    tbody.appendChild(row);
+                }
+            }
+            table.appendChild(tbody);
+
+            return table;
+        }
     </script>
 </body>
 </html>
