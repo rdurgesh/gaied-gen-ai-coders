@@ -7,3 +7,6 @@ llama-index-readers-file==0.4.6
 unstructured==0.17.2
 libmagic==1.0
 apiflask==2.3.2
+unstructured[all-docs]
+libmagic
+docx2txt
