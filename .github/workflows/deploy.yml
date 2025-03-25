@@ -16,11 +16,14 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
+    - name: Ensure pip cache path exists
+      run: mkdir -p ~/.cache/pip
+
     - name: Cache Python dependencies
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('code/GenAIEmailProcessingApp/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
@@ -43,11 +46,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Ensure Google Cloud SDK path exists
+      run: mkdir -p ~/google-cloud-sdk
+
     - name: Cache Google Cloud SDK
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: ~/google-cloud-sdk
-        key: ${{ runner.os }}-gcloud-${{ hashFiles('**/gcloud-config') }}
+        key: ${{ runner.os }}-gcloud-${{ hashFiles('code/GenAIEmailProcessingApp/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-gcloud-
 
@@ -64,4 +70,6 @@ jobs:
           --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/genai-email-processing-app:latest \
           --platform managed \
           --region ${{ secrets.GCP_REGION }} \
-          --allow-unauthenticated
+          --allow-unauthenticated \
+          --port 8080 \
+          --set-env-vars GENAI_API_KEY=${{ secrets.GENAI_API_KEY }}

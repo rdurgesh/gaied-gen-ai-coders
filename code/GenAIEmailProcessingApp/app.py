@@ -1,15 +1,20 @@
 import os
+from apiflask import APIFlask
 from flask import Flask, render_template, request, jsonify
 from util.email_classification import summarize_eml_file
-from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap5
 import json
 
-app = Flask(__name__)
+app = APIFlask(__name__)
 # Define the upload folder
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-Bootstrap(app)
+# Create the upload folder if it doesn't exist
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+Bootstrap5(app)
 
 @app.route("/")
 def index():
