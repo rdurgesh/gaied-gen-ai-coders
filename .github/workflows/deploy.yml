@@ -20,7 +20,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('code/GenAIEmailProcessingApp/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
@@ -43,11 +43,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Ensure Google Cloud SDK path exists
+      run: mkdir -p ~/google-cloud-sdk
+
     - name: Cache Google Cloud SDK
       uses: actions/cache@v4
       with:
         path: ~/google-cloud-sdk
-        key: ${{ runner.os }}-gcloud-${{ hashFiles('**/gcloud-config') }}
+        key: ${{ runner.os }}-gcloud-${{ hashFiles('code/GenAIEmailProcessingApp/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-gcloud-
 
